@@ -22,5 +22,4 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
-//	compileOnly 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
 }
