@@ -13,22 +13,22 @@ import reactor.core.publisher.Flux;
 @SpringBootApplication
 public class Application {
 
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-	}
-	
-	@Bean
-	CommandLineRunner init(ReactiveMongoOperations operations, ProductRepository repository) {
-		return args -> {
-			Flux<Product> productFlux = Flux.just(
-					new Product("Test 1", 1.00),
-					new Product("Test 2", 2.00),
-					new Product("Test 3", 45.00)
-			).flatMap(repository::save);
-			
-			productFlux
-				.thenMany(repository.findAll())
-				.subscribe(System.out::println);
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+
+    @Bean
+    CommandLineRunner init(ReactiveMongoOperations operations, ProductRepository repository) {
+        return args -> {
+            Flux<Product> productFlux = Flux.just(
+                    new Product("Test 1", 1.00),
+                    new Product("Test 2", 2.00),
+                    new Product("Test 3", 45.00)
+            ).flatMap(repository::save);
+
+            productFlux
+                    .thenMany(repository.findAll())
+                    .subscribe(System.out::println);
 			
 			/* For real mongo db
 			 * operations.collectionExists(Product.class)
@@ -37,6 +37,6 @@ public class Application {
 				.thenMany(productFlux)
 				.thenMany(repository.findAll())
 				.subscribe(System.out::println);*/
-		};
-	}
+        };
+    }
 }
