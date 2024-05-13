@@ -35,7 +35,7 @@ public class ProductController {
     @GetMapping("{id}")
     public Mono<ResponseEntity<Product>> get(@PathVariable(value = "id") String id) {
         return repository.findById(id)
-                .map(product -> ResponseEntity.ok(product))
+                .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
@@ -53,7 +53,7 @@ public class ProductController {
                     existingProduct.setPrice(product.getPrice());
                     return repository.save(existingProduct);
                 })
-                .map(updateProduct -> ResponseEntity.ok(updateProduct))
+                .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
