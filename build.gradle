@@ -12,8 +12,8 @@ repositories {
 }
 
 java {
-	sourceCompatibility = JavaVersion.VERSION_21
-	targetCompatibility = JavaVersion.VERSION_21
+	sourceCompatibility = JavaVersion.VERSION_26
+	targetCompatibility = JavaVersion.VERSION_26
 }
 
 dependencies {
@@ -27,9 +27,12 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.boot:spring-boot-test-autoconfigure'
 	testImplementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-webflux-test'
 	testImplementation 'io.projectreactor:reactor-test'
+	testImplementation 'org.testcontainers:mongodb:1.20.1'
+	testImplementation 'org.testcontainers:junit-jupiter:1.20.1'
 	testCompileOnly 'org.projectlombok:lombok'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	testAnnotationProcessor 'org.projectlombok:lombok'
